@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github profile-card</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900">
+    <div id="root" class="text-center m-[5rem] text-bold text-xl">
+        <h1 class="text-center text-white">Search Username</h1>
+        <input type="search" id="search-bar" class="w-[20rem] mt-[0.75rem] pt-1 rounded-md">
+        <button class="h-8" @click="getUser">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+        </button><br><br>
+
+        <div id="card" class="text-center inline-block m-auto align-middle w-[80vw] h-auto justify-center hide">
+            <!-- Github User basic Info -->
+            <div class="w-[20vw] m-auto text-white">
+                <a :href="url" target="_blank"><img :src="avatar_url" :alt="username"></a>
+                <h1>{{username}}</h1>
+                <p>{{login}}</p>
+                <p>followers: {{followers}}</p>
+                <p>following: {{following}}</p>
+                <p>{{bio}}</p>
+                <p>Repositories: {{public_repos}}</p>
+                <a :href="blog">{{blog}}</a>
+            </div>
+
+            <!-- Repositories of User -->
+            <div id="repos" class="text-center flex justify-center align-middle overflow-hidden flex-wrap gap-[1rem] my-16">
+                <div class="repo w-[25vw] h-auto bg-green-200 border-2 border-black rounded-md" v-for="repo in repos" :key="repo">
+                    <a :href="repo['html_url']">
+                        <h2>Name: {{repo['name']}}</h2>
+                    </a>
+                        <p>Description: {{repo['description']}}</p>
+                        <p>Stars: {{repo['stargazers_count']}}</p> 
+                        <p>Forks: {{repo['forks']}}</p>
+                        <p>Language: {{repo['language']}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
