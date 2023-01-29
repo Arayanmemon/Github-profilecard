@@ -15,6 +15,7 @@ const app = Vue.createApp({
     },
     methods: {
         async getUser(){
+            this.repos = [];
             await fetch('https://api.github.com/users/'+ document.getElementById('search-bar').value)
             .then((res) => res.json())
             .then((data) => {
@@ -34,7 +35,7 @@ const app = Vue.createApp({
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                for (let i = 0; i < 10; i++) {
+                for (let i = 0; i < 12; i++) {
                     this.repos.push(data[i]);
                 }
 
